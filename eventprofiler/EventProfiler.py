@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-def eventprofiler(data, events, lookback=1, lookforward=1):
+def eventprofile(data, events, lookback=1, lookforward=1):
     '''Event Profiler for a pandas.DataFrame of symbols indexed
     events are picked from the events dataframe by the symbol name and index.
     Output data is normalized agains the event value'''

@@ -1,24 +1,24 @@
 import unittest
-import EventProfiler
+from eventprofiler import eventprofile
 import pandas as pd
 
 
 class Test(unittest.TestCase):
 
     def testNormalProfile(self):
-        result = EventProfiler.eventprofiler(self.data, self.signal, 1, 1)
+        result = eventprofile(self.data, self.signal, 1, 1)
         assertValuesEqualsTo(result['mean'], [-2,  0,  1])
         assertValuesEqualsTo(result['std'], [1, 0, 0])
         assertValuesEqualsTo(result['count'], [2, 2, 2])
 
     def testFirstEventNotInResult(self):
-        result = EventProfiler.eventprofiler(self.data, self.signal, 2, 1)
+        result = eventprofile(self.data, self.signal, 2, 1)
         assertValuesEqualsTo(result['mean'], [-2, -1, 0, 1])
         assertValuesEqualsTo(result['std'], [0, 0, 0, 0])
         assertValuesEqualsTo(result['count'], [1, 1, 1, 1])
 
     def testLastEventNotInResult(self):
-        result = EventProfiler.eventprofiler(self.data, self.signal, 1, 2)
+        result = eventprofile(self.data, self.signal, 1, 2)
         assertValuesEqualsTo(result['mean'], [-3, 0, 1, 2])
         assertValuesEqualsTo(result['std'], [0, 0, 0, 0])
         assertValuesEqualsTo(result['count'], [1, 1, 1, 1])

@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import EventProfiler
+import eventprofiler as ep
 import pandas as pd
 
 
@@ -32,7 +32,7 @@ def makeData():
 def main():
     lookback = 1
     lookforward = 2
-    result = EventProfiler.eventprofiler(
+    result = ep.eventprofile(
         makeData(), makeSignal(), lookback, lookforward)
 
     plt.clf()
