@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-def eventprofile(data, events, lookback=1, lookforward=1):
+def eventprofile(data, events, lookback=1, lookforward=1, accum=False):
     '''Event Profiler for a pandas.DataFrame of symbols indexed
     events are picked from the events dataframe by the symbol name and index.
     Output data is normalized agains the event value'''
@@ -15,6 +15,8 @@ def eventprofile(data, events, lookback=1, lookforward=1):
             loc = data.index.get_loc(index)
             period = data.iloc[loc-lookback:loc+lookforward+1][symbol]
             if period.size == lookback + lookforward + 1:
+                if accum:
+                    period = period.cumsum()
                 period = period - period.iloc[lookback]
                 periods[i] = period.values
                 i += 1
